@@ -1,0 +1,33 @@
+
+import java.math.BigInteger;
+
+public class MagicPotionIdentifier {
+    public static void main(String[] args) {
+        BigInteger power = new BigInteger("132651201231");
+        BigInteger cubeRoot = cubeRoot(power);
+        if (cubeRoot.pow(3).equals(power)) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+
+    public static BigInteger cubeRoot(BigInteger n) {
+        BigInteger low = BigInteger.ZERO;
+        BigInteger high = n;
+        while (low.compareTo(high) < 0) {
+            BigInteger mid = low.add(high).shiftRight(1);
+            BigInteger midCubed = mid.pow(3);
+            int cmp = midCubed.compareTo(n);
+            if (cmp < 0) {
+                low = mid.add(BigInteger.ONE);
+            } else if (cmp > 0) {
+                high = mid.subtract(BigInteger.ONE);
+            } else {
+                return mid;
+            }
+        }
+        return high;
+    }
+}
+
