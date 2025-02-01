@@ -1,0 +1,26 @@
+public class AlternatingCase {
+    public static void main(String[] args) {
+        String s = "Za^B8g@E2jH*kWl!MoPqXr7YvT1c$Fs3Ud9IwZ&yX0pLkV6sHqN^tB4rA+oZ%gFj";
+        System.out.println(reformatString(s));
+    }
+
+    public static String reformatString(String s) {
+        StringBuilder result = new StringBuilder();
+        boolean toggleCase = true; 
+
+        for (char c : s.toCharArray()) {
+            if (Character.isAlphabetic(c)) {
+                if (toggleCase) {
+                    result.append(Character.toUpperCase(c));
+                } else {
+                    result.append(Character.toLowerCase(c));
+                }
+                toggleCase = !toggleCase;
+            } else {
+                result.append(c);
+            }
+        }
+
+        return result.toString();
+    }
+}

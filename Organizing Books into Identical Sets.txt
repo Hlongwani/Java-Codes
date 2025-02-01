@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class OrganizeBooks {
+    public static void main(String[] args) {
+        int[] shelf = {1234567, 1234567, 2345678, 2345678, 3456789, 3456789, 
+                       1234567, 2345678, 3456789, 4567890, 4567890, 5678901, 
+                       5678901, 6789012, 6789012, 1234567, 2345678, 3456789, 
+                       4567890, 5678901, 4567890, 5678901};
+        System.out.println(canOrganizeBooks(shelf));
+    }
+
+    public static String canOrganizeBooks(int[] shelf) {
+        
+        int gcd = shelf[0];
+        for (int i = 1; i < shelf.length; i++) {
+            gcd = findGCD(gcd, shelf[i]);
+            if (gcd == 1) {
+                return "NO";
+            }
+        }
+
+        return gcd > 1 ? "YES" : "NO";
+    }
+
+    
+    public static int findGCD(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
